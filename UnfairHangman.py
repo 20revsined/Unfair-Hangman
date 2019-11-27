@@ -115,5 +115,3 @@ class Guess():
 		if listCodedWord == listWord and guess <= GuessLimit:
 			print("Congratulations! You guessed the word!")
 			sys.exit(0)
-
-#source: https://www.geeksforgeeks.org/python-convert-list-characters-string/
