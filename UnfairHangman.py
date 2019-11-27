@@ -58,14 +58,16 @@ class Guess():
 			NewString += z
 		return NewString
 
-	def encode(string, EncodedString):
+	def encode(string):
 		x = 0
+		EncodedString = ""
+
 		while x < len(string):
 			EncodedString += "*"
 			x += 1
 		return EncodedString
 
-	CodedWord = encode(word, string)
+	CodedWord = encode(word)
 
 	print(CodedWord)
 
@@ -101,17 +103,16 @@ class Guess():
 		
 		guess += 1
 
-		if(guess % 5 == 0):
-			word = ""
-			word = GenerateWord.getWord()
-			CodedWord = ""
-			encode(word, CodedWord)
-			#listCodedWord = ""
-			listCodedWord = list(CodedWord)
-			GuessLimit = len(word) + 3
-			print("New Word!\n" + encode(word, CodedWord))
-
-
 		if listCodedWord == listWord and guess <= GuessLimit:
 			print("Congratulations! You guessed the word!")
 			sys.exit(0)
+
+		if(guess % 4 == 0):
+			word = ""
+			word = GenerateWord.getWord()
+			CodedWord = ""
+			CodedWord = encode(word)
+			#listCodedWord = ""
+			listCodedWord = list(CodedWord)
+			GuessLimit = len(word) + 3
+			print("New Word!\n" + CodedWord)
