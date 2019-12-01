@@ -78,19 +78,23 @@ class Guess():
 	print("Welcome to Unfair Hangman! You will guess letters and try guess the correct word. Good luck!")
 
 	guess = 0
-	GuessLimit = len(word) + 3
+	GuessLimit = len(word)
 	number = 0
 
 	while True:
 		letter = str(input("Please enter a letter."))
 		number = listWord.count(letter)
 
+		if letter == "reveal":
+			print("Game over. The word was " + word + ".")
+			sys.exit(0)
+
 		if guess == GuessLimit and "*" in listCodedWord:
 			print("Sorry, you were unable to guess the word. The word was " + word + ".")
 			sys.exit(0)
 
 		if number > 0:
-			while z < len(listCodedWord):
+			while z < len(listCodedWord) - 1:
 				if letter == listWord[z]:
 					listCodedWord[z] = letter
 				z += 1
@@ -112,7 +116,9 @@ class Guess():
 			word = GenerateWord.getWord()
 			CodedWord = ""
 			CodedWord = encode(word)
-			#listCodedWord = ""
+			listCodedWord = ""
 			listCodedWord = list(CodedWord)
-			GuessLimit = len(word) + 3
+			guess = 0
+			GuessLimit = len(word)
+			z = 0
 			print("New Word!\n" + CodedWord)
